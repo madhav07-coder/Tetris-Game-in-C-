@@ -70,18 +70,24 @@ The game is structured to follow basic Tetris mechanics:
 
 ## 📸 Screenshots
 ## Game Start 
-![Game Start](https://github.com/user-attachments/assets/570300a2-16a2-43ed-92ea-2dd6b4bbd581)
+![Game Start](https://github.com/user-attachments/assets/6cbbcf8a-ced7-4d4b-ba9e-8ae24a97d639)
+
 ## In-Game
-![In-Game](https://github.com/user-attachments/assets/75a31b21-0921-45f0-b2e5-941526fe89fe)
+![In-Game](https://github.com/user-attachments/assets/aa85aea4-d98f-4855-8e71-fcd8ef48c878)
+
 ## Game Over
-![Game Over](https://github.com/user-attachments/assets/5c91e969-69e9-445e-a425-5802b30f3571)
+![Game Over](https://github.com/user-attachments/assets/5cf3fda3-3f9f-4304-ba1f-8f48a8d486d0)
+
 
 ## 🎥 Gameplay Video
-[Watch the Gameplay](screenshots/gameplay.mp4)
+## 1
+https://github.com/user-attachments/assets/8b7a48e0-11b4-4c00-a1a7-ec098fa5fdfd
+## 2
+https://github.com/user-attachments/assets/d51f90e0-283c-4860-b599-b452e0d65872
 
 
 ## 🎯 Conclusion
-This Tetris game provides a fun and engaging console experience while demonstrating C++ programming concepts, including real-time input handling, game loops, and logic optimization. Future improvements may include additional game modes and a graphical user interface.
+This Tetris game provides a fun and engaging console experience while demonstrating C++ programming concepts, including real-time input handling, game loops, and logic optimization. We learn many interseting things from this project
 
 ---
 
