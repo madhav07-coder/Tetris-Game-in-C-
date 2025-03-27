@@ -86,14 +86,13 @@ The game follows standard Tetris rules:
 
 ## 📸 Screenshots
 ## Game Start 
-![Game Start](https://github.com/user-attachments/assets/6cbbcf8a-ced7-4d4b-ba9e-8ae24a97d639)
+![Game Start](https://github.com/user-attachments/assets/2f7f0a6a-d76f-4cef-92dc-a21b48e06704)
 
 ## In-Game
-![In-Game](https://github.com/user-attachments/assets/aa85aea4-d98f-4855-8e71-fcd8ef48c878)
+![In-Game](https://github.com/user-attachments/assets/a534452e-0ccc-4af6-a7d4-4721868ee471)
 
 ## Game Over
-![Game Over](https://github.com/user-attachments/assets/5cf3fda3-3f9f-4304-ba1f-8f48a8d486d0)
-
+![Game Over](https://github.com/user-attachments/assets/79057b7e-1c93-4f79-a5b8-a38eaee0c419)
 
 ## 🎥 Gameplay Video
 ## 1
