@@ -1,58 +1,72 @@
-# Tetris-Console-Game-C++
-
-## Tetris Game - C++ Project Documentation
+## Tetris Console Game - C++ Project Documentation
 
 ### 🖥️ Cross-Platform Support: Windows, macOS, and Linux
 
 ### Group: Code Experts
+
 1. **202401204** - Shlok Nareshkumar Ukani
 2. **202401239** - Vamja Krish Pravinbhai
 3. **202401243** - Virugama Meetkumar Aniruddhbhai
 4. **202401226** - Thesiya Madhav Manish
 
 ## 📌 Introduction
-Tetris is a tile-matching puzzle game where players rotate and arrange falling tetrominoes to clear lines and earn points. This C++ implementation runs in a terminal window and features smooth gameplay mechanics, score tracking, and progressive difficulty.
+
+Tetris is a classic tile-matching puzzle game where players rotate and arrange falling tetrominoes to clear lines and earn points. This C++ implementation runs in a terminal window and features smooth gameplay mechanics, score tracking, and increasing difficulty over time.
 
 ## 🎮 Features
-- Classic 10x20 Tetris grid.
-- Implementation of all seven standard tetrominoes (I, O, T, S, Z, J, L).
-- Real-time user input handling with smooth movement and rotation.
-- Dynamic gravity system that increases speed as the game progresses.
-- Line-clearing mechanics with score tracking.
-- Pause and resume functionality.
-- Game-over detection when blocks reach the top.
-- **Colorful UI**: Each tetromino is displayed in a unique color for better visual distinction.
+
+- **Classic Tetris Gameplay**: Play on a 10x20 grid with all seven standard tetrominoes (I, O, T, S, Z, J, L).
+- **Real-Time Input & Dynamic Controls**:
+  - Smooth movement and rotation using arrow keys.
+  - Soft drop (↓) and hard drop (Spacebar) functionality.
+  - **Hold Feature**: Store a tetromino for later use (activated with 'C').
+  - Pause/resume game with the ESC key.
+- **Dynamic Gravity & Scoring**:
+  - The falling speed increases as you clear more lines.
+  - Level advances every 5 lines cleared, further increasing game speed.
+- **Visual Enhancements**:
+  - Colorful tetrominoes using ANSI escape codes.
+  - Real-time display of the next tetromino and the held tetromino.
+- **High Score Management**:
+  - Saves high scores to a file (`highscore.txt`).
+  - Displays the highest score achieved across game sessions.
 - **Cross-Platform Support**: Runs on Windows, macOS, and Linux with terminal-based rendering.
 
 ## 📂 File Structure
 The project consists of the following files:
 
-| File | Description |
-|------|------------|
-| `main.cpp` | The only source file, containing the entire game logic, including game loop, rendering, input handling, and mechanics. |
+| File               | Description                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| `block_stacks.cpp` | Contains the entire game logic, including game loop, rendering, input handling, and mechanics. |
 
 ## 🛠️ Game Mechanics
-The game is structured to follow basic Tetris mechanics:
+The game follows standard Tetris rules:
+
 - **Tetromino Handling**: Pieces can move left, right, rotate, and drop.
 - **Collision Detection**: Ensures valid movements within the grid.
-- **Line Clearing**: Detects and removes full rows, shifting the board.
+- **Line Clearing**: Detects and removes full rows, shifting the board down.
 - **Scoring System**: Points are awarded based on cleared lines.
 - **Game Progression**: The falling speed increases as more lines are cleared.
+- **Restart Feature**: After game over, players can restart by pressing 'R'.
 
 ## 🎮 Controls
-| Key | Action |
-|-----|--------|
-| ← | Move left |
-| → | Move right |
-| ↑ | Rotate piece |
-| ↓ | Soft drop |
-| Spacebar | Hard drop |
-| ESC | Pause/Quit |
+
+| Key      | Action        |
+| -------- | ------------- |
+| ←        | Move left     |
+| →        | Move right    |
+| ↑        | Rotate piece  |
+| ↓        | Soft drop     |
+| Spacebar | Hard drop     |
+| 'C'      | Hold piece    |
+| ESC      | Pause/Quit    |
+| 'R'      | Restart game  |
 
 ## 🚀 How to Run the Game
+
 1. Compile the project using a C++ compiler:
    ```sh
-   g++ main.cpp -o tetris_game
+   g++ block_stacks.cpp -o tetris_game
    ```
 2. Run the executable:
    ```sh
@@ -62,11 +76,13 @@ The game is structured to follow basic Tetris mechanics:
 3. Use the arrow keys and spacebar to play the game.
 
 ## 🏆 Scoring System
+
 - 1 Line Cleared: 100 Points
 - 2 Lines Cleared: 300 Points
 - 3 Lines Cleared: 500 Points
 - 4 Lines (Tetris): 800 Points
-- Speed increases every 10 cleared lines
+- Speed increases every 5 cleared lines.
+
 
 ## 📸 Screenshots
 ## Game Start 
@@ -87,7 +103,8 @@ https://github.com/user-attachments/assets/d51f90e0-283c-4860-b599-b452e0d65872
 
 
 ## 🎯 Conclusion
-This Tetris game provides a fun and engaging console experience while demonstrating C++ programming concepts, including real-time input handling, game loops, and logic optimization. We learn many interseting things from this project
+This Tetris game provides a fun and engaging console experience while demonstrating C++ programming concepts, including real-time input handling, game loops, and logic optimization. Through features like the hold option, restart functionality, and high score tracking, it enhances the traditional Tetris gameplay while offering a challenging experience. This project helped us improve our understanding of game development, input handling, and terminal-based graphics using C++.
 
 ---
+
 
