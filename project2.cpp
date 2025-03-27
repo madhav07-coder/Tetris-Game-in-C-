@@ -248,6 +248,9 @@ class Game
 private:
     Board* board;  // Changed to pointer to avoid assignment issues
     Tetromino* current = nullptr;
+    Tetromino* next = nullptr;    // Next tetromino coming option
+    Tetromino* hold = nullptr;    // Hold option variable
+    bool holdUsed = false;        // Flag to check if hold was used in current turn
     bool paused = false;   
     GameConfig config;
 
@@ -284,8 +287,9 @@ private:
         {
             switch (key) 
             {
-                case ' ': hardDrop(); break;  // space key
+                case ' ': hardDrop(); break; // space key
                 case 27: togglePause(); break; // escape key
+                case 'c': holdCurrent(); break; // 'c' for hold option
             }
         }
     }
@@ -324,6 +328,26 @@ private:
         }
     }
     void togglePause() { paused = !paused; }
+
+    // New: Hold current tetromino option without changing game logic
+    void holdCurrent() 
+    {
+        if (holdUsed) return; // allow only one hold per turn
+        holdUsed = true;
+        if (!hold) 
+        {
+            hold = current;
+            current = next;
+            next = new Tetromino(rand() % 7, config);
+        } 
+        else 
+        {
+            swap(current, hold);
+            // Reset position for held tetromino
+            current->x = config.WIDTH / 2 - 2;
+            current->y = 0;
+        }
+    }
 
     void drawBorder() const   // UI UX Improvement
     {
@@ -390,11 +414,44 @@ private:
         system("clear");
 #endif
         cout << "\n  TETRIS GAME\n";
+        cout << "  Player: " << playerName << "\n"; // Display player name
         cout << "  Score: " << board->getScore() 
              << "  High Score: " << board->getHighScore()
              << "  Level: " << board->getLevel() << "\n\n";
 
         drawBorder();
+
+        // New: Display Next tetromino preview
+        cout << "\n  NEXT:\n";
+        if (next) {
+            for (int i = 0; i < 4; i++) {
+                cout << "    ";
+                for (int j = 0; j < 4; j++) {
+                    if (next->shape[i][j])
+                        cout << COLORS[next->getType()] << BLOCK_CHAR << RESET << " ";
+                    else
+                        cout << "  ";
+                }
+                cout << "\n";
+            }
+        }
+
+        // New: Display Hold tetromino preview
+        cout << "\n  HOLD:\n";
+        if (hold) {
+            for (int i = 0; i < 4; i++) {
+                cout << "    ";
+                for (int j = 0; j < 4; j++) {
+                    if (hold->shape[i][j])
+                        cout << COLORS[hold->getType()] << BLOCK_CHAR << RESET << " ";
+                    else
+                        cout << "  ";
+                }
+                cout << "\n";
+            }
+        } else {
+            cout << "    (Empty)\n";
+        }
 
         if (paused) {
             cout << "\n  PAUSED (Press ESC to resume)\n";
@@ -422,10 +479,19 @@ private:
         } while(config.HEIGHT < 12 || config.HEIGHT > 30);
     }
 
+    // New: Player name input option
+    string playerName;
+    void getPlayerName() {
+        cout << "\n  Enter player name: ";
+        cin.ignore(); // clear any leftover newline
+        getline(cin, playerName);
+    }
+
 public:
     Game() 
     {
         showConfigScreen();
+        getPlayerName();  // prompt for player name
 #ifdef _WIN32
         // Enable ANSI escape codes
         HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -439,12 +505,15 @@ public:
         srand(static_cast<unsigned int>(time(0)));
         board = new Board(config);
         current = new Tetromino(rand() % 7, config);
+        next = new Tetromino(rand() % 7, config); // generate next tetromino
     }
 
     ~Game() 
     { 
         delete board;
         delete current; 
+        delete next;
+        if(hold) delete hold;
     }
 
     void run() 
@@ -462,12 +531,21 @@ public:
                     board->placeTetromino(*current);
                     board->clearLines();
                     delete current;
-                    current = new Tetromino(rand() % 7, config);
+                    current = next;
+                    next = new Tetromino(rand() % 7, config);
+                    holdUsed = false; // reset hold usage for new tetromino
                     if (board->isGameOver(*current)) 
                     {
                         board->saveHighScore();
                         draw();
                         cout << "\n  GAME OVER!\n";
+                        cout << "  Press R to restart or any other key to quit: ";
+                        int ch = _getch();
+                        if(ch == 'r' || ch == 'R') {
+                            // New: Restart from starting option
+                            resetGame();
+                            continue;
+                        }
                         break;
                     }
                 }
@@ -481,11 +559,35 @@ public:
             }
         }
     }
+
+    // New: Reset game state for restart option
+    void resetGame() {
+        delete board;
+        delete current;
+        delete next;
+        if(hold) { delete hold; hold = nullptr; }
+        board = new Board(config);
+        current = new Tetromino(rand() % 7, config);
+        next = new Tetromino(rand() % 7, config);
+        holdUsed = false;
+    }
 };
 
 int main() 
 {
-    Game game;
-    game.run();
+    while (true) {  // New: loop to support restart option
+        Game game;
+        game.run();
+        cout << "\n  Thank you for playing!\n";
+        cout << "  Press R to play again or any other key to exit: ";
+        int ch = _getch();
+        if(ch != 'r' && ch != 'R')
+            break;
+#ifdef _WIN32
+        system("cls");
+#else
+        system("clear");
+#endif
+    }
     return 0;
 }
