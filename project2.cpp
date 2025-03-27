@@ -421,12 +421,15 @@ private:
 
         drawBorder();
 
-        // New: Display Next tetromino preview
+        //  Display Next tetromino preview
         cout << "\n  NEXT:\n";
-        if (next) {
-            for (int i = 0; i < 4; i++) {
+        if (next) 
+        {
+            for (int i = 0; i < 4; i++) 
+            {
                 cout << "    ";
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 4; j++) 
+                {
                     if (next->shape[i][j])
                         cout << COLORS[next->getType()] << BLOCK_CHAR << RESET << " ";
                     else
@@ -436,12 +439,15 @@ private:
             }
         }
 
-        // New: Display Hold tetromino preview
+        //  Display Hold tetromino preview
         cout << "\n  HOLD:\n";
-        if (hold) {
-            for (int i = 0; i < 4; i++) {
+        if (hold) 
+        {
+            for (int i = 0; i < 4; i++) 
+            {
                 cout << "    ";
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 4; j++) 
+                {
                     if (hold->shape[i][j])
                         cout << COLORS[hold->getType()] << BLOCK_CHAR << RESET << " ";
                     else
@@ -449,11 +455,14 @@ private:
                 }
                 cout << "\n";
             }
-        } else {
+        } 
+        else 
+        {
             cout << "    (Empty)\n";
         }
 
-        if (paused) {
+        if (paused) 
+        {
             cout << "\n  PAUSED (Press ESC to resume)\n";
         }
     }
@@ -502,37 +511,38 @@ public:
 
         SetConsoleOutputCP(CP_UTF8);
 #endif
-        srand(static_cast<unsigned int>(time(0)));
-        board = new Board(config);
-        current = new Tetromino(rand() % 7, config);
+        srand(static_cast<unsigned int>(time(0)));   // srand
+        board = new Board(config);  // new board
+        current = new Tetromino(rand() % 7, config);   // generate current tetromino
         next = new Tetromino(rand() % 7, config); // generate next tetromino
     }
 
-    ~Game() 
+    ~Game()         // game end kare tyare badhu delete kari nakho
     { 
-        delete board;
-        delete current; 
-        delete next;
-        if(hold) delete hold;
+        delete board;        // aakhu board delete
+        delete current;        // current tetris delete
+        delete next;          // delete next tetris
+        if(hold) delete hold;     // jo koi tetris ne hold par mukyu hoy tene pan null kari nakhop
     }
 
     void run() 
     {
-        while (true) {
-            if (!paused) 
+        while (true)   
+        {
+            if (!paused)       // pause nathi te jova
             {
-                handleInput();
-                if (board->isValidMove(*current, 0, 1)) 
+                handleInput();  // input le
+                if (board->isValidMove(*current, 0, 1))  //
                 {
                     current->y++;
                 } 
                 else 
                 {
-                    board->placeTetromino(*current);
-                    board->clearLines();
-                    delete current;
-                    current = next;
-                    next = new Tetromino(rand() % 7, config);
+                    board->placeTetromino(*current);    /// place current
+                    board->clearLines();            // clear line if avilable
+                    delete current;         // delete current
+                    current = next;             //    have next ne current banavi lo
+                    next = new Tetromino(rand() % 7, config);         // next ne defien karo
                     holdUsed = false; // reset hold usage for new tetromino
                     if (board->isGameOver(*current)) 
                     {
@@ -541,8 +551,9 @@ public:
                         cout << "\n  GAME OVER!\n";
                         cout << "  Press R to restart or any other key to quit: ";
                         int ch = _getch();
-                        if(ch == 'r' || ch == 'R') {
-                            // New: Restart from starting option
+                        if(ch == 'r' || ch == 'R') 
+                        {
+                            // Restart from starting option
                             resetGame();
                             continue;
                         }
@@ -560,31 +571,33 @@ public:
         }
     }
 
-    // New: Reset game state for restart option
-    void resetGame() {
-        delete board;
-        delete current;
-        delete next;
-        if(hold) { delete hold; hold = nullptr; }
-        board = new Board(config);
-        current = new Tetromino(rand() % 7, config);
-        next = new Tetromino(rand() % 7, config);
-        holdUsed = false;
+    //  Reset game state for restart option
+    void resetGame() 
+    {
+        delete board;        // aakhu board delete
+        delete current;        // current tetris delete
+        delete next;           // delete next tetris
+        if(hold)             // jo koi tetris ne hold par mukyu hoy tene pan null kari nakhop
+        { delete hold; hold = nullptr; }
+        board = new Board(config);        // navu board banavo
+        current = new Tetromino(rand() % 7, config);       // navu current tetris /banavo
+        next = new Tetromino(rand() % 7, config);               // navu next tetris     
+        holdUsed = false;        // hold ne intally false
     }
 };
 
 int main() 
 {
-    while (true) {  // New: loop to support restart option
+    while (true) {  // loop to support restart option  infinite looop jevu
         Game game;
         game.run();
         cout << "\n  Thank you for playing!\n";
         cout << "  Press R to play again or any other key to exit: ";
         int ch = _getch();
         if(ch != 'r' && ch != 'R')
-            break;
+            break;   // terminate game
 #ifdef _WIN32
-        system("cls");
+        system("cls");   // clear the console screen
 #else
         system("clear");
 #endif
