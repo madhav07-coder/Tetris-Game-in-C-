@@ -96,9 +96,7 @@ The game follows standard Tetris rules:
 
 ## 🎥 Gameplay Video
 ## 1
-https://github.com/user-attachments/assets/8b7a48e0-11b4-4c00-a1a7-ec098fa5fdfd
-## 2
-https://github.com/user-attachments/assets/d51f90e0-283c-4860-b599-b452e0d65872
+[https://github.com/user-attachments/assets/8b7a48e0-11b4-4c00-a1a7-ec098fa5fdfd](https://github.com/user-attachments/assets/e3c889b8-57fb-4fcc-a9ae-56a47a5a9daf)
 
 
 ## 🎯 Conclusion
