@@ -15,7 +15,7 @@ Tetris is a classic tile-matching puzzle game where players rotate and arrange f
 
 ## 🎮 Features
 
-- **Classic Tetris Gameplay**: Play on a 10x20 grid with all seven standard tetrominoes (I, O, T, S, Z, J, L).
+- **Classic Tetris Gameplay**: Play on a 10x20 or custom grid with all seven standard tetrominoes (I, O, T, S, Z, J, L).
 - **Real-Time Input & Dynamic Controls**:
   - Smooth movement and rotation using arrow keys.
   - Soft drop (↓) and hard drop (Spacebar) functionality.
